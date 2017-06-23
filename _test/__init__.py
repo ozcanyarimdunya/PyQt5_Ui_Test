@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QHeaderView
 
 from forms.mainform import Ui_MainWindow
-from _test.data import *
+from _test.prepare_data import *
 
 
 class MainForm(QMainWindow, Ui_MainWindow):
@@ -15,31 +15,22 @@ class MainForm(QMainWindow, Ui_MainWindow):
 
     def cmd_clicked(self, typ):
         if typ == 'B':
-            self.prepare_table_for_books()
+            self.prepare_table(get_books(), ['Name', 'Author', 'Page Number', 'Short Description'])
         else:
-            self.prepare_table_for_readers()
+            self.prepare_table(get_readers(), ['Name', 'Start Time', 'End Time', 'Read Books'])
 
         self.tableWidget.resizeColumnsToContents()
 
-    def prepare_table_for_books(self):
-        self.tableWidget.setRowCount(len(get_books()))
+    def prepare_table(self, all_data, key):
+        self.tableWidget.clear()
+        self.tableWidget.setRowCount(len(all_data))
         self.tableWidget.setColumnCount(4)
-        self.tableWidget.setHorizontalHeaderLabels(['Name', 'Author', 'Page number', 'Short description'])
-        for count, book in enumerate(get_books()):
-            self.tableWidget.setItem(count, 0, QTableWidgetItem(book['name']))
-            self.tableWidget.setItem(count, 1, QTableWidgetItem(book['Author']))
-            self.tableWidget.setItem(count, 2, QTableWidgetItem(str(book['Page_number'])))
-            self.tableWidget.setItem(count, 3, QTableWidgetItem(book['Short_Description']))
-
-    def prepare_table_for_readers(self):
-        self.tableWidget.setRowCount(len(get_readers()))
-        self.tableWidget.setColumnCount(4)
-        self.tableWidget.setHorizontalHeaderLabels(['Name', 'Start Time', 'End time', 'Before books'])
-        for count, reader in enumerate(get_readers()):
-            self.tableWidget.setItem(count, 0, QTableWidgetItem(reader['name']))
-            self.tableWidget.setItem(count, 1, QTableWidgetItem(reader['start_time']))
-            self.tableWidget.setItem(count, 2, QTableWidgetItem(str(reader['end_time'])))
-            self.tableWidget.setItem(count, 3, QTableWidgetItem(reader['before']))
+        self.tableWidget.setHorizontalHeaderLabels(key)
+        for count, _data in enumerate(all_data):
+            self.tableWidget.setItem(count, 0, QTableWidgetItem(str(_data[key[0]])))
+            self.tableWidget.setItem(count, 1, QTableWidgetItem(str(_data[key[1]])))
+            self.tableWidget.setItem(count, 2, QTableWidgetItem(str(_data[key[2]])))
+            self.tableWidget.setItem(count, 3, QTableWidgetItem(str(_data[key[3]])))
 
 
 if __name__ == '__main__':
