@@ -21,16 +21,16 @@ class MainForm(QMainWindow, Ui_MainWindow):
 
         self.tableWidget.resizeColumnsToContents()
 
-    def prepare_table(self, all_data, key):
+    def prepare_table(self, all_data, cols):
         self.tableWidget.clear()
         self.tableWidget.setRowCount(len(all_data))
-        self.tableWidget.setColumnCount(4)
-        self.tableWidget.setHorizontalHeaderLabels(key)
+        self.tableWidget.setColumnCount(len(cols))
+        self.tableWidget.setHorizontalHeaderLabels(cols)
         for count, _data in enumerate(all_data):
-            self.tableWidget.setItem(count, 0, QTableWidgetItem(str(_data[key[0]])))
-            self.tableWidget.setItem(count, 1, QTableWidgetItem(str(_data[key[1]])))
-            self.tableWidget.setItem(count, 2, QTableWidgetItem(str(_data[key[2]])))
-            self.tableWidget.setItem(count, 3, QTableWidgetItem(str(_data[key[3]])))
+            self.tableWidget.setItem(count, 0, QTableWidgetItem(str(_data[cols[0]])))
+            self.tableWidget.setItem(count, 1, QTableWidgetItem(str(_data[cols[1]])))
+            self.tableWidget.setItem(count, 2, QTableWidgetItem(str(_data[cols[2]])))
+            self.tableWidget.setItem(count, 3, QTableWidgetItem(str(_data[cols[3]])))
 
 
 if __name__ == '__main__':

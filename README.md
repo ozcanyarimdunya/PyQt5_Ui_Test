@@ -1,4 +1,13 @@
-# PyQt5_Ui_Test
-qt5 ui test
+# PyQt5 Ui Component Test
+Qt5 ui components
 ---
-![enter image description here](/ss/1.png)
+ - label
+ - lineEdit
+ - textEdit
+ - pushButton
+ - dockWidget
+ - tableWidget
+ - HLayout
+ - VLayout
+---
+![description here](/ss/1.png)
