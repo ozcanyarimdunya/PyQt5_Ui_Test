@@ -5,6 +5,7 @@ Qt5 ui components
  - lineEdit
  - textEdit
  - pushButton
+ - commandLink
  - dockWidget
  - tableWidget
  - HLayout
